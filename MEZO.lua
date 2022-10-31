@@ -11592,34 +11592,7 @@ local msg_id = msg.id/2097152/0.5
 end
 end
 ---زخرفة ----
-if text == "زخرفه" or text == "زخرف"  then
-if msg.can_be_deleted_for_all_users == false then
-return LuaTele.sendText(msg_chat_id,msg_id,"\n*ᥫ᭡ عذرآ البوت ليس ادمن في الجروب يرجى ترقيته وتفعيل الصلاحيات له *","md",true)  
-end
-local reply_markup = LuaTele.replyMarkup{
-type = 'inline',
-data = {
-{
-{text = '🖌️ زخرفه ',  data ='/leftz@'},
-},
-}
-}
-return LuaTele.sendText(msg.chat_id,msg.id,'*\nاليك القوائم الزخرف  اضفط وزخرف*',"md",false, false, false, false, reply_markup)
-end
 
----برج---
-if Redis:get(MEZO.."zhrfa"..msg.sender.user_id) == "sendzh" then
-zh = https.request('https://apiabs.ml/zrf.php?abs='..URL.escape(text)..'')
-zx = JSON.decode(zh)
-t = "\n ᥫ᭡قائمه الزخرفه \n•━═━═━TIGEᖇ━═━═━•\n"
-i = 0
-for k,v in pairs(zx.ok) do
-i = i + 1
-t = t..i.."- `"..v.."` \n"
-end
-LuaTele.sendText(msg_chat_id,msg_id,t,"md",true) 
-Redis:del(MEZO.."zhrfa"..msg.sender.user_id) 
-end
 -----معاني-الاسماء---
 if text and text:match("^معني (.*)$") then
 local TextName = text:match("^معني (.*)$")
