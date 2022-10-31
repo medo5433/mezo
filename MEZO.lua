@@ -11607,9 +11607,9 @@ if text == "زخرفه" then
   return send(msg_chat_id,msg_id, "مرحبا بك في زخرفه تايجر","md",false,false,false,false,reply_markup)
 end
 -- z eng
-if text and text:match("%a") and Redis:get(black..msg_chat_id..msg.sender.user_id.."zkrf:") == "zeng" then
-  Redis:del(black..msg_chat_id..msg.sender.user_id.."zkrf:")
-  Redis:set(black..msg_chat_id..msg.sender.user_id.."zkrf:text", text)
+if text and text:match("%a") and Redis:get(MEZO..msg_chat_id..msg.sender.user_id.."zkrf:") == "zeng" then
+  Redis:del(MEZO..msg_chat_id..msg.sender.user_id.."zkrf:")
+  Redis:set(MEZO..msg_chat_id..msg.sender.user_id.."zkrf:text", text)
   local api = https.request("https://api-jack.ml/api19.php?text="..URL.escape(text))
   local zkrf = JSON.decode(api)
   local reply_markup = LuaTele.replyMarkup{
@@ -11639,9 +11639,9 @@ if text and text:match("%a") and Redis:get(black..msg_chat_id..msg.sender.user_i
     return send(msg_chat_id,msg_id, "★ اختࢪ الزخࢪفھـۃ التي تࢪيدها\n ▽","html",false,false,false,false,reply_markup)
 end
 -- z ar 
-if text and not text:match("%a") and Redis:get(black..msg_chat_id..msg.sender.user_id.."zkrf:") == "zar" then
-  Redis:del(black..msg_chat_id..msg.sender.user_id.."zkrf:")
-  Redis:set(black..msg_chat_id..msg.sender.user_id.."zkrf:text", text)
+if text and not text:match("%a") and Redis:get(MEZO..msg_chat_id..msg.sender.user_id.."zkrf:") == "zar" then
+  Redis:del(MEZO..msg_chat_id..msg.sender.user_id.."zkrf:")
+  Redis:set(MEZO..msg_chat_id..msg.sender.user_id.."zkrf:text", text)
   local api = https.request("https://api-jack.ml/api19.php?text="..URL.escape(text))
   local zkrf = JSON.decode(api)
   local reply_markup = LuaTele.replyMarkup{
