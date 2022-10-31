@@ -1344,7 +1344,8 @@ Redis:incr(MEZO.."Num:Add:Memp"..msg.chat_id..":"..msg.sender_id.user_id)
 if AddMembrs == "kick" and not msg.Special then
 bot.setChatMemberStatus(msg.chat_id,v,'banned',0)
 end
-
+end
+end
 
 Redis:set(MEZO.."Who:Added:Me"..msg_chat_id..":"..v,msg.sender.user_id)
 if Info_User.type.luatele == "userTypeBot" then
