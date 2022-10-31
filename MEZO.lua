@@ -1315,29 +1315,34 @@ print('This is message Pin')
 end 
 
 
-if msg.content.luatele == "messageChatAddMembers" then -- اضافه اشخاص
+if msg.content.MEZObots == "messageChatAddMembers" then -- اضافه اشخاص
 print('This is Add Membeers ')
-Redis:incr(MEZO.."Num:Add:Memp"..msg_chat_id..":"..msg.sender.user_id) 
+Redis:incr(MEZO.."Num:Add:Memp"..msg_chat_id..":"..msg.sender_id.user_id) 
 local AddMembrs = Redis:get(MEZO.."Lock:AddMempar"..msg_chat_id) 
 local Lock_Bots = Redis:get(MEZO.."Lock:Bot:kick"..msg_chat_id)
 for k,v in pairs(msg.content.member_user_ids) do
-local Info_User = LuaTele.getUser(v) 
-print(v)
-if v == tonumber(MEZO) then
-local N = (Redis:get(MEZO.."Name:Bot") or "تايجر")
-photo = LuaTele.getUserProfilePhotos(MEZO)
-local TextBot = '*ᥫ᭡ انا بوت اسمي '..N..'\nᥫ᭡ وظيفتي حمايه المجموعة من السبام والتفليش الخ....\nᥫ᭡ لتفعيل البوت قم اضافته للمجموعتك وقم برفعه مشرف واكتب تفعيل\n*'
-keyboard = {} 
-keyboard.inline_keyboard = {
-{
-{text = ' تفعيل ', callback_data = msg.sender.user_id..'/onlinebott'..msg_chat_id},
-},
-{
-{text = '◜ 𝚂𝙾𝚄𝚁𝙲𝙴 𝚃𝙸𝙶𝙴𝚁◞', url = 't.me/TGe_R'},
-}
-}
-local rep = msg.id/2097152/0.5
-https.request("https://api.telegram.org/bot"..Token.."/sendphoto?chat_id="..msg.chat_id.."&reply_to_message_id="..rep.."&photo="..photo.photos[1].sizes[#photo.photos[1].sizes].photo.remote.id.."&caption="..URL.escape(TextBot).."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
+if tonumber(v) == tonumber(MEZO) then
+local idephoto = Redis:get(MEZO..':WELCOME_BOT')
+if idephoto then
+local Bot_Name = (Redis:get(MEZO.."Name:Bot") or "تايجر")
+return bot.sendPhoto(msg.chat_id, msg.id, idephoto,
+'\n* ╗ مـرحـبــا انا بــوت '..Bot_Name..''..
+'\n╣ اخـتصـاصـي  ادارة الجـروبــات'..
+'\n╣ مـن السـب والشـتيمـه والابــاحـه'..
+'\n╣ لتفعيل البــوت اتبــاع الخـطـوات'..
+'\n╣❶ ارفع البــوت مـشـرف في مـجـمـوعه'..
+'\n╣ وارسـل تفعيل في مـجـمـوعه'..
+'\n╣❷ لو ارت تفعيل ردود السـورس'..
+'\n╣ اكتب تفعيل ردود السـورس'..
+'\n╝ مـطـور الـبــوت -> @'..UserSudo..
+'*', "md")
+end
+end
+local Info_User = bot.getUser(v) 
+if Info_User.type.MEZObots == "userTypeRegular" then
+Redis:incr(MEZO.."Num:Add:Memp"..msg.chat_id..":"..msg.sender_id.user_id) 
+if AddMembrs == "kick" and not msg.Special then
+bot.setChatMemberStatus(msg.chat_id,v,'banned',0)
 end
 
 
@@ -13456,8 +13461,8 @@ keyboard.inline_keyboard = {
 {text = '˹   𝘿𝙀𝙑 • 𝙈𝙀𝘿𝙊 .', url = "https://t.me/U_Y_3_M"}
 },
 }
-local msg_id = msg.id_/2097152/0.5
-https.request("https://api.telegram.org/bot"..token..'/sendvideo?chat_id=' .. msg.chat_id_ .. '&video=https://t.me/swry00/35&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
+local msgg = msg_id/2097152/0.5
+https.request("https://api.telegram.org/bot"..Token.."/sendvideo?chat_id=" .. msg_chat_id .. "&video="..video.."&caption=".. URL.escape(T).."&reply_to_message_id="..msgg.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
 elseif text == 'الاوامر' then
 if otlop(msg) == false then
 local chinfo = Redis:get("ch:admin:3am")
@@ -13694,7 +13699,7 @@ data = {
 },
 }
 }
-return send(msg_chat_id,msg_id,'مرحبا عزيزي في قائمه الالعاب الخاصه بالسورس 💎',"md",false, false, false, false, reply_markup)
+return send(msg_chat_id,msg_id,'مرحبا عزيزي في قائمه الالعاب الخاصه بالسورس ??',"md",false, false, false, false, reply_markup)
 end
 
 if text == 'تحديث' then
