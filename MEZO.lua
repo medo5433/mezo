@@ -16364,13 +16364,6 @@ send(msg.chat_id_, msg.id_,'['..LEADER_Msg[math.random(#LEADER_Msg)]..']')
 return false
 end
 end
-if text and text ~="صراحه" and database:get(bot_id..":"..msg.sender_user_id_..":rkko_Bots"..msg.chat_id_) == "sendrkkoe" then
-numj = {"اما قله ادب صحيح كلو كدب فى كدب💔😔"," ده مظبوط🙂😹"," اقلك الكلام ده كدب واللى قالولك كداب وانت كداب واللى بيتفرج كمان كداب🤝😂"," ده برجوله وموثق كمان❤️😁","فعلا بتتكلم صح🤗","يجدع قول كلام غير دا😹","احس هل شي كذب🌚💕","طب عيني ف عينك كدا ??","انت صح",};
-sendnuj = numj[math.random(#numj)]
-xl = ' ⟨  '..text..'  ⟩ \n '..sendnuj..'.'
-send(msg.chat_id_, msg.id_,xl) 
-database:del(bot_id..":"..msg.sender_user_id_..":rkko_Bots"..msg.chat_id_)
-end
 if text == "حزوره" then
 if Redis:get(MEZO.."Status:Games"..msg.chat_id) then
 Hzora = {"الجرس","عقرب الساعه","السمك","المطر","5","الكتاب","البسمار","7","الكعبه","بيت الشعر","لهانه","انا","امي","الابره","الساعه","22","غلط","كم الساعه","البيتنجان","البيض","المرايه","الضوء","الهواء","الضل","العمر","القلم","المشط","الحفره","البحر","الثلج","الاسفنج","الصوت","بلم"};
@@ -16919,7 +16912,7 @@ return send(msg_chat_id,msg_id,'ᥫ᭡اهلا بك عزيزي المطور ', '
 end
 end
 if text == '/tiger' then
-Redis:sadd(ZELZAL..'ZELZAL:Num:User:Pv',msg.sender.user_id)  
+Redis:sadd(MEZO..'MEZO:Num:User:Pv',msg.sender.user_id)  
 if not msg.ControllerBot then
 local reply_markup = LuaTele.replyMarkup{type = 'keyboard',resize = true,is_personal = true,
 data = {
@@ -16968,7 +16961,7 @@ return LuaTele.sendText(msg_chat_id,msg_id,'* ⦁ اهلا بك عزيزي .. ت
 end
 end
 if text == "اغاني قصيرة 🎶" then
-Redis:sadd(ZELZAL..'ZELZAL:Num:User:Pv',msg.sender.user_id)  
+Redis:sadd(MEZO..'MEZO:Num:User:Pv',msg.sender.user_id)  
 if not msg.ControllerBot then
 Abs = math.random(2,140); 
 local Text ='*𖥔┊تم اختيار المقطع الصوتي لك*'
@@ -16979,7 +16972,7 @@ https.request("https://api.telegram.org/bot"..Token..'/sendVoice?chat_id=' .. ms
 end
 end
 if text == "حالات واتس 🎬" then
-Redis:sadd(ZELZAL..'ZELZAL:Num:User:Pv',msg.sender.user_id)  
+Redis:sadd(MEZO..'MEZO:Num:User:Pv',msg.sender.user_id)  
 if not msg.ControllerBot then
 Abs = math.random(296,400); 
 local Text ='*🎆┊حـالات واتـس قصيـرة ➧🧸♥️*'
@@ -16990,7 +16983,7 @@ https.request("https://api.telegram.org/bot"..Token..'/sendVideo?chat_id=' .. ms
 end
 end
 if text == "انمي ستوري 🎬" then
-Redis:sadd(ZELZAL..'ZELZAL:Num:User:Pv',msg.sender.user_id)  
+Redis:sadd(MEZO..'MEZO:Num:User:Pv',msg.sender.user_id)  
 if not msg.ControllerBot then
 Abs = math.random(6,641); 
 local Text ='*🎆┊ستـوريات آنمـي قصيـرة ➧ 🖤🧧*'
@@ -17001,9 +16994,9 @@ https.request("https://api.telegram.org/bot"..Token..'/sendVideo?chat_id=' .. ms
 end
 end
 if text == "بصمـات ميمـز 🦹🏻‍♂" then
-Redis:sadd(ZELZAL..'ZELZAL:Num:User:Pv',msg.sender.user_id)  
+Redis:sadd(MEZO..'MEZO:Num:User:Pv',msg.sender.user_id)  
 if not msg.ControllerBot then
-Zelzaly = math.random(2,1201); 
+MEZOy = math.random(2,1201); 
 local zzzzl1l = '*𖥔┊اضغط الـزر لتغييـر مقطـع الميمـز*'
 data = {} 
 data.inline_keyboard = {
@@ -17012,21 +17005,21 @@ data.inline_keyboard = {
 },
 }
 local msgg = msg_id/2097152/0.5
-https.request("https://api.telegram.org/bot"..Token.."/sendVoice?chat_id=" .. msg.chat_id .. "&voice=https://t.me/MemzDavid/"..Zelzaly.."&caption=" .. URL.escape(zzzzl1l).."&reply_to_message_id="..msgg.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(data))
+https.request("https://api.telegram.org/bot"..Token.."/sendVoice?chat_id=" .. msg.chat_id .. "&voice=https://t.me/MemzDavid/"..MEZOy.."&caption=" .. URL.escape(zzzzl1l).."&reply_to_message_id="..msgg.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(data))
 end
 end
 if text == "عـروض الافـلام 🎞" then 
-Redis:sadd(ZELZAL..'ZELZAL:Num:User:Pv',msg.sender.user_id)  
+Redis:sadd(MEZO..'MEZO:Num:User:Pv',msg.sender.user_id)  
 if not msg.ControllerBot then
 Abs = math.random(2,82); 
 local Text ='*𖥔┊تم اختيار الفلم لك*'
 local MsgId = msg.id/2097152/0.5
 local MSGID = string.gsub(MsgId,'.0','')
-https.request("https://api.telegram.org/bot"..Token..'/sendphoto?chat_id=' .. msg.chat_id .. '&photo=https://t.me/ZelzalMoves/'..Abs..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..MsgId.."&parse_mode=markdown") 
+https.request("https://api.telegram.org/bot"..Token..'/sendphoto?chat_id=' .. msg.chat_id .. '&photo=https://t.me/MEZOMoves/'..Abs..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..MsgId.."&parse_mode=markdown") 
 end
 end
 if text == "انمي بنت 👩‍🎤🎑" then 
-Redis:sadd(ZELZAL..'ZELZAL:Num:User:Pv',msg.sender.user_id)  
+Redis:sadd(MEZO..'MEZO:Num:User:Pv',msg.sender.user_id)  
 if not msg.ControllerBot then
 Abs = math.random(3,825); 
 local Text ='*🎆┊افتـارات آنمـي بنـات ➧🧚🏻‍♀◟*'
@@ -17036,7 +17029,7 @@ https.request("https://api.telegram.org/bot"..Token..'/sendphoto?chat_id=' .. ms
 end
 end
 if text == "انمي ولد 👨‍🎤🎑" then 
-Redis:sadd(ZELZAL..'ZELZAL:Num:User:Pv',msg.sender.user_id)  
+Redis:sadd(MEZO..'MEZO:Num:User:Pv',msg.sender.user_id)  
 if not msg.ControllerBot then
 Abs = math.random(3,556); 
 local Text ='*🎆┊افتـارات آنمـي ولـد ➧🙇🏻◟*'
@@ -17046,7 +17039,7 @@ https.request("https://api.telegram.org/bot"..Token..'/sendphoto?chat_id=' .. ms
 end
 end
 if text == "صـور 🎇" then 
-Redis:sadd(ZELZAL..'ZELZAL:Num:User:Pv',msg.sender.user_id)  
+Redis:sadd(MEZO..'MEZO:Num:User:Pv',msg.sender.user_id)  
 if not msg.ControllerBot then
 Abs = math.random(4,1171); 
 local Text ='*𖥔┊تم اختيار الافتـار لك*'
@@ -17056,7 +17049,7 @@ https.request("https://api.telegram.org/bot"..Token..'/sendphoto?chat_id=' .. ms
 end
 end
 if text == "معلومات عامة 🧩" then 
-Redis:sadd(ZELZAL..'ZELZAL:Num:User:Pv',msg.sender.user_id)  
+Redis:sadd(MEZO..'MEZO:Num:User:Pv',msg.sender.user_id)  
 if not msg.ControllerBot then
 Abs = math.random(3,270); 
 local Text ='*𖥔┊صـورة ومعلومـة 🛤💡*'
@@ -17066,7 +17059,7 @@ https.request("https://api.telegram.org/bot"..Token..'/sendphoto?chat_id=' .. ms
 end
 end
 if text == "افتار بنت 🙋🏻‍♀🌁" then 
-Redis:sadd(ZELZAL..'ZELZAL:Num:User:Pv',msg.sender.user_id)  
+Redis:sadd(MEZO..'MEZO:Num:User:Pv',msg.sender.user_id)  
 if not msg.ControllerBot then
 Abs = math.random(2,63); 
 local Text ='*🎆┊افتـارات بنـات تمبلـرࢪ ➧🧚🏻‍♀◟*'
@@ -17076,7 +17069,7 @@ https.request("https://api.telegram.org/bot"..Token..'/sendphoto?chat_id=' .. ms
 end
 end
 if text == "افتار ولد 🙋🏻‍♂🌁" or text == "رمادي ولد 🧝🏻🏙" then 
-Redis:sadd(ZELZAL..'ZELZAL:Num:User:Pv',msg.sender.user_id)  
+Redis:sadd(MEZO..'MEZO:Num:User:Pv',msg.sender.user_id)  
 if not msg.ControllerBot then
 Abs = math.random(2,131); 
 local Text ='*🎆┊افتـارات ولـد ࢪمـاديه ➧🙇🏻🖤◟*'
@@ -17086,7 +17079,7 @@ https.request("https://api.telegram.org/bot"..Token..'/sendphoto?chat_id=' .. ms
 end
 end
 if text == "رمادي بنت 🧝🏻‍♀🏙" then 
-Redis:sadd(ZELZAL..'ZELZAL:Num:User:Pv',msg.sender.user_id)  
+Redis:sadd(MEZO..'MEZO:Num:User:Pv',msg.sender.user_id)  
 if not msg.ControllerBot then
 Abs = math.random(2,131); 
 local Text ='*🎆┊افتـارات بنـات ࢪمـاديه ➧🙇🏻‍♀🖤◟*'
@@ -17096,7 +17089,7 @@ https.request("https://api.telegram.org/bot"..Token..'/sendphoto?chat_id=' .. ms
 end
 end
 if text == "بيست بنات 👯‍♀🎆" then 
-Redis:sadd(ZELZAL..'ZELZAL:Num:User:Pv',msg.sender.user_id)  
+Redis:sadd(MEZO..'MEZO:Num:User:Pv',msg.sender.user_id)  
 if not msg.ControllerBot then
 Abs = math.random(2,30); 
 local Text ='*🎆┊افتـارات بيست تطقيـم بنـات ➧🧚🏻‍♀🧚🏻‍♀◟*'
@@ -17106,7 +17099,7 @@ https.request("https://api.telegram.org/bot"..Token..'/sendphoto?chat_id=' .. ms
 end
 end
 if text == "تطقيم حب ♥️🎆" then 
-Redis:sadd(ZELZAL..'ZELZAL:Num:User:Pv',msg.sender.user_id)  
+Redis:sadd(MEZO..'MEZO:Num:User:Pv',msg.sender.user_id)  
 if not msg.ControllerBot then
 Abs = math.random(2,58); 
 local Text ='*🎆┊افتـارات تطـقيم حـب تمبلـرࢪ ➧??♥️◟*'
@@ -17116,7 +17109,7 @@ https.request("https://api.telegram.org/bot"..Token..'/sendphoto?chat_id=' .. ms
 end
 end
 if text == "متحـركـات 🎆" then 
-Redis:sadd(ZELZAL..'ZELZAL:Num:User:Pv',msg.sender.user_id)  
+Redis:sadd(MEZO..'MEZO:Num:User:Pv',msg.sender.user_id)  
 if not msg.ControllerBot then
 Abs = math.random(2,1075); 
 local Text ='*𖥔┊تم اختيار متحركه لك*'
@@ -17126,7 +17119,7 @@ https.request("https://api.telegram.org/bot"..Token..'/sendanimation?chat_id=' .
 end
 end
 if text == "ريمكسات اغـاني 🎵" then
-Redis:sadd(ZELZAL..'ZELZAL:Num:User:Pv',msg.sender.user_id)  
+Redis:sadd(MEZO..'MEZO:Num:User:Pv',msg.sender.user_id)  
 if not msg.ControllerBot then
 Abs = math.random(2,612); 
 local Text ='*𖥔┊تم اختيار المقطع ريماكس لك 💞🎶*'
@@ -17137,7 +17130,7 @@ https.request("https://api.telegram.org/bot"..Token..'/sendVoice?chat_id=' .. ms
 end
 end
 if text == "رقيـة شرعيـة 🕋" then
-Redis:sadd(ZELZAL..'ZELZAL:Num:User:Pv',msg.sender.user_id)  
+Redis:sadd(MEZO..'MEZO:Num:User:Pv',msg.sender.user_id)  
 if not msg.ControllerBot then
 Abs = math.random(5,121); 
 local Text ='*𖥔┊تم اختيار مقطـع الرقيـة الشـرعيـة 🕋🤍*'
@@ -17148,7 +17141,7 @@ https.request("https://api.telegram.org/bot"..Token..'/sendVoice?chat_id=' .. ms
 end
 end
 if text == "اشعـار صوتيـة 🎙" then
-Redis:sadd(ZELZAL..'ZELZAL:Num:User:Pv',msg.sender.user_id)  
+Redis:sadd(MEZO..'MEZO:Num:User:Pv',msg.sender.user_id)  
 if not msg.ControllerBot then
 Abs = math.random(7,592); 
 local Text ='*𖥔┊تم اختيار المقطع شعر لك*'
