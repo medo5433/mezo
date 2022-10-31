@@ -11681,7 +11681,7 @@ end
 
 
 if text == 'المبرمج ادوكس' or text == 'ادوكس' then  
-local UserId_Info = LuaTele.searchPublicChat("PTPPE")
+local UserId_Info = LuaTele.searchPublicChat("vvvzbot")
 if UserId_Info.id then
 local  ban = LuaTele.getUser(UserId_Info.id)
 local  bain = LuaTele.getUserFullInfo(UserId_Info.id)
@@ -11819,7 +11819,7 @@ local TestText = "  ❲ َِ ََِِ⁨ՏOᑌᖇᑕE TIGEᖇ ,❳\nᥫ᭡\n ᥫ
 keyboardd = {} 
 keyboardd.inline_keyboard = {
 {
-{text = 'ِ𝚂𝙾𝚄𝚁𝙲𝙴 𝚃𝙸𝙶𝙴𝚁↺★  .', url = 't.me/PTPPE'}, 
+{text = 'ِ𝚂𝙾𝚄𝚁𝙲𝙴 𝚃𝙸𝙶𝙴𝚁↺★  .', url = 't.me/vvvzbot'}, 
 },
 }
 local msg_id = msg.id/2097152/0.5 
@@ -11829,7 +11829,7 @@ local TestText = "- معلومات المطور: \\nn: name Dev . [".. ban.first
 keyboardd = {} 
 keyboardd.inline_keyboard = {
 {
-{text = 'ِ𝚂𝙾𝚄𝚁𝙲𝙴 𝚃𝙸𝙶𝙴𝚁↺★  .', url = 't.me/PTPPE'}, 
+{text = 'ِ𝚂𝙾𝚄𝚁𝙲𝙴 𝚃𝙸𝙶𝙴𝚁↺★  .', url = 't.me/vvvzbot'}, 
 },
 {
 {text = Creat, url = "https://t.me/"..ban.username..""},
@@ -13404,9 +13404,15 @@ local T =[[
 ]]
 keyboard = {} 
 keyboard.inline_keyboard = {
-{{text = '•𝐌𝐄𝐃𝐎 ♪', callback_data="/ U_Y_3_M"},{text = '•ᴍʏ ᴄʜᴀɴɴᴇʟ♪', callback_data="/TGe_R"}},   
-{{text = '♪مــطــور الــبــوت•', url="http://t.me/"..sudos.UserName}},
-{{text = '♪ ✈ • أضف البوت لمجموعتك • ✈ •' ,url="t.me/"..dofile("./Info.lua").botUserName.."?startgroup=start"}}, 
+{
+{text = '˹  𝐂𝐇 • 𝐓𝐈𝐆𝐄𝐑  ⁦. 𓌗', url = "https://t.me/TGe_R"},{text = '˹  𝙎𝙋 • 𝙏𝙄𝙂𝙀𝙍  ⁦. 𓌗', url = "https://t.me/U_Y_3_M_X"}
+},
+{
+{text = '˹  𝐀𝐃𝐎𝐊𝐒 ⁦. 𓌗', url = "https://t.me/PTPPE"},{text = '˹  𝐙𝐎𝐇𝐑𝐘  ⁦. 𓌗', url = "https://t.me/vvvzbot"}
+},
+{
+{text = '˹   𝘿𝙀𝙑 • 𝙈𝙀𝘿𝙊 .', url = "https://t.me/U_Y_3_M"}
+},
 }
 local msg_id = msg.id_/2097152/0.5
 https.request("https://api.telegram.org/bot"..token..'/sendvideo?chat_id=' .. msg.chat_id_ .. '&video=https://t.me/swry00/35&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
@@ -16471,7 +16477,7 @@ name = string.gsub(name,"🐼","👻👻👻🐼👻👻👻👻👻👻👻")
 name = string.gsub(name,"🐇","🕊🕊🕊🕊🕊🐇🕊🕊🕊🕊")
 name = string.gsub(name,"🌑","🌚🌚🌚🌚🌚🌑🌚🌚🌚")
 name = string.gsub(name,"🌚","🌑🌑🌑🌑🌑🌚🌑🌑🌑")
-name = string.gsub(name,"⭐️","🌟🌟🌟🌟🌟🌟🌟🌟⭐️🌟🌟🌟")
+name = string.gsub(name,"⭐️","??🌟🌟🌟🌟🌟🌟🌟⭐️🌟🌟🌟")
 name = string.gsub(name,"✨","??💫💫💫💫✨💫💫💫💫")
 name = string.gsub(name,"⛈","🌨🌨🌨🌨🌨⛈🌨🌨🌨🌨")
 name = string.gsub(name,"🌥","⛅️⛅️⛅️⛅️⛅️⛅️🌥⛅️⛅️⛅️⛅️")
