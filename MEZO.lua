@@ -19758,7 +19758,7 @@ local UserId = Text:match('(%d+)/lock_usernamektm')
 if tonumber(IdUser) == tonumber(UserId) then
 Redis:set(MEZO.."Lock:User:Name"..ChatId,"ktm")  
 local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = '- رجوع', data =UserId..'/'.. 'NoNextSeting'},},}}
-edit(ChatId,Msg_id,Reply_Status(IdUser),"ᥫ᭡ تم قفـل المعرفات").lockKtm, 'md', true, false, reply_markup)
+edit(ChatId,Msg_id,Reply_Status(IdUser),"ᥫ᭡ تم قفـل المعرفات").lockKtm,md, true, false, reply_markup)
 end
 elseif Text and Text:match('(%d+)/lock_tagsktm') then
 local UserId = Text:match('(%d+)/lock_tagsktm')
