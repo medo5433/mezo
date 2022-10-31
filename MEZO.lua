@@ -1315,51 +1315,30 @@ print('This is message Pin')
 end 
 
 
-if msg.content.MEZObots == "messageChatAddMembers" then -- اضافه اشخاص
+if msg.content.luatele == "messageChatAddMembers" then -- اضافه اشخاص
 print('This is Add Membeers ')
-Redis:incr(MEZO.."Num:Add:Memp"..msg_chat_id..":"..msg.sender_id.user_id) 
+Redis:incr(MEZO.."Num:Add:Memp"..msg_chat_id..":"..msg.sender.user_id) 
 local AddMembrs = Redis:get(MEZO.."Lock:AddMempar"..msg_chat_id) 
 local Lock_Bots = Redis:get(MEZO.."Lock:Bot:kick"..msg_chat_id)
 for k,v in pairs(msg.content.member_user_ids) do
-if tonumber(v) == tonumber(MEZO) then
-local idephoto = Redis:get(MEZO..':WELCOME_BOT')
-if idephoto then
-local Bot_Name = (Redis:get(MEZO.."Name:Bot") or "تايجر")
-return bot.sendPhoto(msg.chat_id, msg.id, idephoto,
-'\n* ╗ مـرحـبــا انا بــوت '..Bot_Name..''..
-'\n╣ اخـتصـاصـي  ادارة الجـروبــات'..
-'\n╣ مـن السـب والشـتيمـه والابــاحـه'..
-'\n╣ لتفعيل البــوت اتبــاع الخـطـوات'..
-'\n╣❶ ارفع البــوت مـشـرف في مـجـمـوعه'..
-'\n╣ وارسـل تفعيل في مـجـمـوعه'..
-'\n╣❷ لو ارت تفعيل ردود السـورس'..
-'\n╣ اكتب تفعيل ردود السـورس'..
-'\n╝ مـطـور الـبــوت -> @'..UserSudo..
-'*', "md")
+local Info_User = LuaTele.getUser(v) 
+print(v)
+if v == tonumber(MEZO) then
+local N = (Redis:get(MEZO.."Name:Bot") or "بلاك")
+photo = LuaTele.getUserProfilePhotos(MEZO)
+local TextBot = '*ᥫ᭡ انا بوت اسمي '..N..'\nᥫ᭡ وظيفتي حمايه المجموعة من السبام والتفليش الخ....\nᥫ᭡ لتفعيل البوت قم اضافته للمجموعتك وقم برفعه مشرف واكتب تفعيل\n*'
+keyboard = {} 
+keyboard.inline_keyboard = {
+{
+{text = ' تفعيل ', callback_data = msg.sender.user_id..'/onlinebott'..msg_chat_id},
+},
+{
+{text = 'ᥫ᭡ ◜ 𝚂𝙾𝚄𝚁𝙲𝙴 𝚃𝙸𝙶𝙴𝚁◞  ᥫ᭡️', url = 't.me/TGe_R'},
+}
+}
+local rep = msg.id/2097152/0.5
+https.request("https://api.telegram.org/bot"..Token.."/sendphoto?chat_id="..msg.chat_id.."&reply_to_message_id="..rep.."&photo="..photo.photos[1].sizes[#photo.photos[1].sizes].photo.remote.id.."&caption="..URL.escape(TextBot).."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
 end
-end
-local Info_User = bot.getUser(v) 
-if Info_User.type.MEZObots == "userTypeRegular" then
-Redis:incr(MEZO.."Num:Add:Memp"..msg.chat_id..":"..msg.sender_id.user_id) 
-if AddMembrs == "kick" and not msg.Special then
-bot.setChatMemberStatus(msg.chat_id,v,'banned',0)
-end
-Redis:set(MEZO.."Who:Added:Me"..msg_chat_id..":"..v,msg.sender.user_id)
-if Info_User.type.luatele == "userTypeBot" then
-if Lock_Bots == "del" and not msg.ControllerBot then
-LuaTele.setChatMemberStatus(msg.chat_id,v,'banned',0)
-elseif Lock_Bots == "kick" and not msg.ControllerBot then
-LuaTele.setChatMemberStatus(msg.chat_id,msg.sender.user_id,'banned',0)
-LuaTele.setChatMemberStatus(msg.chat_id,v,'banned',0)
-end
-elseif Info_User.type.luatele == "userTypeRegular" then
-Redis:incr(MEZO.."Num:Add:Memp"..msg.chat_id..":"..msg.sender.user_id) 
-if AddMembrs == "kick" and not msg.ControllerBot then
-LuaTele.setChatMemberStatus(msg.chat_id,v,'banned',0)
-end
-end
-end
-end 
 
 if msg.content.luatele == "messageContact" and not msg.Special then  -- الجهات
 local Contact_Group = Redis:get(MEZO.."Lock:Contact"..msg_chat_id)
@@ -13432,7 +13411,7 @@ end
 if text == 'السورس' or text == 'سورس' or text == 'يا سورس' or text == 'source' then
 video = "https://t.me/TGe_R/407"
 local T =[[
-[⊶⊷᯽ 𝙏𝙞𝙂𝙚𝙍 ᯽⊶⊷](t.me/TGe_R)
+[⊶⊷ᥫ᭡ 𝙏𝙞𝙂𝙚𝙍 ᥫ᭡⊶⊷](t.me/TGe_R)
 
 ╾╾╾╾╾╾╾╾╾╾╾╾╾╾╾╸
  [🚨╎𝚆𝙴𝙻𝙲𝙾𝙼𝙴 𝚃𝙾 𝚂𝙾𝚄𝚁𝙲𝙴 𝚝𝚒𝚐𝚎𝚛](t.me/TGe_R)
@@ -13445,7 +13424,7 @@ local T =[[
  [◍ 𝚜𝚘𝚞𝚛𝚌𝚎 𝚝𝚒𝚐𝚎𝚛 ◍](t.me/TGe_R)
  ──┈┈┈┄┄╌╌╌╌┄┄┈┈┈
 
-[⊶⊷᯽ 𝙏𝙞𝙂𝙚𝙍 ᯽⊶⊷](t.me/TGe_R)
+[⊶⊷ᥫ᭡ 𝙏𝙞𝙂𝙚𝙍 ᥫ᭡⊶⊷](t.me/TGe_R)
 ]]
 keyboard = {} 
 keyboard.inline_keyboard = {
@@ -14725,7 +14704,7 @@ LuaTele.sendText(msg.chat_id,msg.id,[[
 
 ⇠ `ماستر`
 ⇠ `فيزا`
-⇠ `اكسبرس`
+⇠ `تايجر`
 
 - اضغط للنسخ
 
@@ -14776,7 +14755,7 @@ Redis:sadd(MEZO.."booob",msg.sender.user_id)
 Redis:del(MEZO.."booobb" .. msg.chat_id .. ":" .. msg.sender.user_id) 
 LuaTele.sendText(msg.chat_id,msg.id, "\n• وعملنا لك حساب في بنك تايجر 🏦\n• وشحنالك 50 جنيه 💵 هدية\n\n⇜ رقم حسابك ↢ ( `"..creditvi.."` )\n⇜ نوع البطاقة ↢ ( فيزا 💳 )\n⇜ فلوسك ↢ ( 50 جنيه 💵 )  ","md",true)   
 end 
-if text == "اكسبرس" then
+if text == "تايجر" then
 local ban = LuaTele.getUser(msg.sender.user_id)
 if ban.first_name then
 news = ""..ban.first_name..""
@@ -14795,7 +14774,7 @@ Redis:set(MEZO.."boballban"..creditex,text)
 Redis:set(MEZO.."boballid"..creditex,banid)
 Redis:sadd(MEZO.."booob",msg.sender.user_id)
 Redis:del(MEZO.."booobb" .. msg.chat_id .. ":" .. msg.sender.user_id) 
-LuaTele.sendText(msg.chat_id,msg.id, "\n• وعملنا لك حساب في بنك تايجر 🏦\n• وشحنالك 50 جنيه 💵 هدية\n\n⇜ رقم حسابك ↢ ( `"..creditex.."` )\n⇜ نوع البطاقة ↢ ( اكسبرس 💳 )\n⇜ فلوسك ↢ ( 50 جنيه 💵 )  ","md",true)   
+LuaTele.sendText(msg.chat_id,msg.id, "\n• وعملنا لك حساب في بنك تايجر 🏦\n• وشحنالك 50 جنيه 💵 هدية\n\n⇜ رقم حسابك ↢ ( `"..creditex.."` )\n⇜ نوع البطاقة ↢ ( تايجر 💳 )\n⇜ فلوسك ↢ ( 50 جنيه 💵 )  ","md",true)   
 end 
 end
 if text == 'مسح حساب بنكي' or text == 'مسح حساب البنكي' or text =='مسح الحساب بنكي' or text =='مسح الحساب البنكي' or text == "مسح حسابي البنكي" or text == "مسح حسابي بنكي" then
