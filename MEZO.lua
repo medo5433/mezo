@@ -6751,32 +6751,6 @@ else
 send(msg_chat_id,msg_id,"ᥫ᭡︙ لا توجد قناه ","md",true)  
 end 
 end
-if not Redis:get( Saidi.."AutoTagTime"..msg.chat_id) and Redis:get( Saidi.."AutoTag"..msg.chat_id) then
-local Info_Chats = bot.getSupergroupFullInfo(msg.chat_id)
-local chat_Members = bot.searchChatMembers(msg.chat_id, "*", Info_Chats.member_count).members
-local rand_members = math.random(#chat_Members)
-local member_id = chat_Members[rand_members].member_id.user_id
-local member_name = bot.getUser(chat_Members[rand_members].member_id.user_id).first_name
-local mem_tag = "["..member_name.."](tg://user?id="..member_id..")"
-local rd = "*•  مشرفنا بحضورك ياغالي - 🥰 : *"
-send(msg.chat_id,msg.id,''..rd..'\n'..mem_tag..'',"md",true)  
-Redis:setex( Saidi.."AutoTagTime"..msg.chat_id,30,true) 
-end
-if text == "تفعيل التاك التلقائي" then
-if not msg.Manger then
-return send(msg.chat_id,msg.id,'*\n ᥫ᭡ عذرآ الامر يخص〘 '..Controller_Num(6)..' 〙*',"md",true)  
-end
-Redis:set( Saidi.."AutoTag"..msg.chat_id,"on") 
-Redis:setex( Saidi.."AutoTagTime"..msg.chat_id,30,true) 
-return send(msg.chat_id,msg.id,'*\n ᥫ᭡ تم تفعيل التاك التلقائي*',"md",true)  
-end
-if text == "تعطيل التاك التلقائي" then
-if not msg.Manger then
-return send(msg.chat_id,msg.id,'*\n ᥫ᭡ عذرآ الامر يخص〘 '..Controller_Num(6)..' 〙*',"md",true)  
-end
-Redis:del( Saidi.."AutoTag"..msg.chat_id,true) 
-return send(msg.chat_id,msg.id,'*\n ᥫ᭡ تم تعطيل التاك التلقائي*',"md",true)  
-end
 if text == "حذف القناه" then
 if not msg.Admin then
 return send(msg_chat_id,msg_id,'\n*ᥫ᭡︙ هذا الامر يخص  '..Controller_Num(7)..' * ',"md",true)  
@@ -13436,7 +13410,6 @@ keyboard.inline_keyboard = {
 }
 local msg_id = msg.id_/2097152/0.5
 https.request("https://api.telegram.org/bot"..token..'/sendvideo?chat_id=' .. msg.chat_id_ .. '&video=https://t.me/swry00/35&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
-end
 elseif text == 'الاوامر' then
 if otlop(msg) == false then
 local chinfo = Redis:get("ch:admin:3am")
@@ -16499,7 +16472,7 @@ name = string.gsub(name,"🐇","🕊🕊🕊🕊🕊🐇🕊🕊🕊🕊")
 name = string.gsub(name,"🌑","🌚🌚🌚🌚🌚🌑🌚🌚🌚")
 name = string.gsub(name,"🌚","🌑🌑🌑🌑🌑🌚🌑🌑🌑")
 name = string.gsub(name,"⭐️","🌟🌟🌟🌟🌟🌟🌟🌟⭐️🌟🌟🌟")
-name = string.gsub(name,"✨","💫💫💫💫💫✨💫💫💫💫")
+name = string.gsub(name,"✨","??💫💫💫💫✨💫💫💫💫")
 name = string.gsub(name,"⛈","🌨🌨🌨🌨🌨⛈🌨🌨🌨🌨")
 name = string.gsub(name,"🌥","⛅️⛅️⛅️⛅️⛅️⛅️🌥⛅️⛅️⛅️⛅️")
 name = string.gsub(name,"⛄️","☃☃☃☃☃☃⛄️☃☃☃☃")
