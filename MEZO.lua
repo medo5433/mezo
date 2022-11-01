@@ -18101,7 +18101,6 @@ inline_keyboard ={
 https.request("https://api.telegram.org/bot"..Token..'/answerInlineQuery?inline_query_id='..data.id..'&switch_pm_text=اضغط لارسال الهمسه&switch_pm_parameter=start&results='..JSON.encode(resuult))
 end
 end
-if data and data.luatele and data.luatele == "updateNewInlineCallbackQuery" then
 
 local Text = LuaTele.base64_decode(data.payload.data)
 if Text and Text:match('(.*)hmsaa(.*)/(.*)')  then
