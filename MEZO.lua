@@ -18000,26 +18000,35 @@ end
 end --UserBot
 end -- File_Bot_Run
 
-function CallBackLua(data)
-
-if data and data.luatele and data.luatele == "updateNewInlineQuery" then
-
-local Text = data.query 
-if Text == '' then
-local input_message_content = {message_text = " ٭ اهلا بك\n ٭ لارسال الهمسه اكتب يوزر البوت + الهمسه + يوزر العضو اللي هتعمله همسه \n ٭ مثال  @SY_RI_Abot هلا @U_Y_3_M"}	
-local resuult = {{
-type = 'article',
-id = math.random(1,64),
-title = 'اضغط هنا لمعرفه كيفيه ارسال الهمسه',
-input_message_content = input_message_content,
-reply_markup = {
-inline_keyboard ={
-{{text ="ch", url= "https://t.me/TGe_R"}},
-}
-},
-},
-}
-https.request("https://api.telegram.org/bot"..Token..'/answerInlineQuery?inline_query_id='..data.id..'&switch_pm_text=@U_Y_3_M&switch_pm_parameter=start&results='..JSON.encode(resuult))
+function CallBackLua(data) --- هذا الكالباك بي الابديت 
+    ChatId = data.chat_id
+if data and data. MEZObots and data. MEZObots == "updateNewInlineCallbackQuery" then
+local Text = bot.base64_decode(data.payload.data)
+if Text and Text:match('/Hmsa1@(%d+)@(%d+)/(%d+)') then
+local ramsesadd = {string.match(Text,"^/Hmsa1@(%d+)@(%d+)/(%d+)$")}
+if tonumber(data.sender_user_id) == tonumber(ramsesadd[1]) or tonumber(ramsesadd[2]) == tonumber(data.sender_user_id) then
+local inget = Redis:get( MEZO..'hmsabots'..ramsesadd[3]..data.sender_user_id)
+https.request("https://api.telegram.org/bot"..Token..'/answerCallbackQuery?callback_query_id='..data.id..'&text='..URL.escape(inget)..'&show_alert=true')
+else
+https.request("https://api.telegram.org/bot"..Token..'/answerCallbackQuery?callback_query_id='..data.id..'&text='..URL.escape('هذه الهمسه ليست لك')..'&show_alert=true')
+end
+end
+end
+if data and data. MEZObots and data. MEZObots == "updateNewInlineQuery" then
+local Text = data.query
+if Text and Text:match("^(.*) @(.*)$")  then
+local username = {string.match(Text,"^(.*) @(.*)$")}
+local UserId_Info = bot.searchPublicChat(username[2])
+if UserId_Info.id then
+local idnum = math.random(1,64)
+local input_message_content = {message_text = 'هذي الهمسة للحلو ( [@'..username[2]..'] ) هو اللي يقدر يشوفها 💖', parse_mode = 'Markdown'}	
+local reply_markup = {inline_keyboard={{{text = 'عرض الهمسه 𖥔 ', callback_data = '/Hmsa1@'..data.sender_user_id..'@'..UserId_Info.id..'/'..idnum}}}}	
+local resuult = {{type = 'article', id = idnum, title = 'هذه همسه سريه الى [@'..username[2]..']', input_message_content = input_message_content, reply_markup = reply_markup}}	
+https.request("https://api.telegram.org/bot"..Token..'/answerInlineQuery?inline_query_id='..data.id..'&results='..JSON.encode(resuult))
+Redis:set( MEZO..'hmsabots'..idnum..UserId_Info.id,username[1])
+Redis:set( MEZO..'hmsabots'..idnum..data.sender_user_id,username[1])
+end
+end
 end
 if Text == "ترجمه" or Text == "ترجمة" then
 local input_message_content = {message_text = "٭ لاستخدام الترجمه انلاين اكتب يوزر البوت + en او ar علي حس لغتك وبعد كدا الكلمه \n٭ مثال : \n٭ [@SY_RI_Abot] en احبك ", parse_mode = 'Markdown'}	
@@ -18075,30 +18084,42 @@ inline_keyboard ={
 }
 https.request("https://api.telegram.org/bot"..Token..'/answerInlineQuery?inline_query_id='..data.id..'&switch_pm_text=ترجمه-عربي&switch_pm_parameter=start&results='..JSON.encode(resuult))
 end
-if Text and Text:match("(.*)@(.*)") then
-local hm = {string.match(Text,"(.*)@(.*)")}
-local user = hm[2]
-local hms = hm[1]
-UserId_Info = LuaTele.searchPublicChat(user)
-local idd = UserId_Info.id
-local key = math.random(1,999999)
-Redis:set(idd..key.."hms",hms)
-local us = LuaTele.getUser(idd)
-local name = us.first_name
-local input_message_content = {message_text = "٭ هذه همسه سريه الي ["..name.."](tg://user?id="..idd..")\n ٭ هو فقط يستطيع رؤيتها ", parse_mode = 'Markdown'}	
-local resuult = {{
-type = 'article',
-id = math.random(1,64),
-title = 'هذه همسه سريه الي '..name..'',
-input_message_content = input_message_content,
-reply_markup = {
-inline_keyboard ={
-{{text ="اضغط هنا لرؤيتها", callback_data = idd.."hmsaa"..data.sender_user_id.."/"..key}},
-}
-},
+if Text and Text:match('(.*)hms(.*)') then
+local testhms = {Text:match('(.*)hms(.*)')}
+if tonumber(IdUser) == tonumber(testhms[1]) then
+local chat_id = Redis:get(MEZO.."hms:"..testhms[2].."chat_id")
+local to_id = Redis:get(MEZO.."hms:"..testhms[2].."to")
+local msg_id = Redis:get(MEZO.."hms:"..testhms[2].."msg_id")
+local sender_name = bot.getUser(testhms[1]).first_name
+local to_name = bot.getUser(to_id).first_name
+local reply_markup = bot.replyMarkup{
+type = 'inline',
+data = {
+{
+{text = '• اضغط هنا لرؤيتها •', data = "sender:"..testhms[1].."to:"..to_id.."hmsa:"..testhms[2]}
 },
 }
-https.request("https://api.telegram.org/bot"..Token..'/answerInlineQuery?inline_query_id='..data.id..'&switch_pm_text=اضغط لارسال الهمسه&switch_pm_parameter=start&results='..JSON.encode(resuult))
+}
+send(chat_id,msg_id," 𖥔 المستحدم -> ["..to_name.."](tg://user?id="..to_id..") \n 𖥔 لديك همسه من ->  ["..sender_name.."](tg://user?id="..testhms[1]..") \n 𖥔 اضغط لرؤيتها","md",true,false,false,false,reply_markup)
+edit(ChatId,Msg_id,"تم ارسال الهمسه بنجاح ✅", 'md',false)
+Redis:del(MEZO.."hms:"..testhms[1])
+end
+end
+if Text and Text:match('(.*)nn_hnss(.*)') then
+local testhms = {Text:match('(.*)nn_hnss(.*)')}
+Redis:del(MEZO.."hms:"..testhms[2].."chat_id")
+Redis:del(MEZO.."hms:"..testhms[2].."to")
+Redis:del(MEZO.."hms:"..testhms[2].."msg_id")
+Redis:del(MEZO.."hms:"..testhms[1])
+edit(ChatId,Msg_id," 𖥔 تم الغاء ارسال الهمسه", 'md',false)
+end 
+if Text and Text:match("sender:(.*)to:(.*)hmsa:(.*)") then
+local testhms = {Text:match("sender:(.*)to:(.*)hmsa:(.*)")}
+if tonumber(IdUser) == tonumber(testhms[1]) or tonumber(IdUser) == tonumber(testhms[2]) then
+local hmsa = Redis:get(MEZO.."hms:"..testhms[3].."text:")
+https.request("https://api.telegram.org/bot"..Token.."/answerCallbackQuery?callback_query_id="..data.id.."&text="..URL.escape(hmsa).."&show_alert=true")
+else
+https.request("https://api.telegram.org/bot"..Token.."/answerCallbackQuery?callback_query_id="..data.id.."&text="..URL.escape(" 𖥔 الهمسه ليست لك").."&show_alert=true")
 end
 end
 
