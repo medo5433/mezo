@@ -18000,7 +18000,7 @@ end
 end --UserBot
 end -- File_Bot_Run
 
-function CallBackLua(data) --- هذا الكالباك بي الابديت 
+function CallBackLua(data)
     ChatId = data.chat_id
 if data and data. MEZObots and data. MEZObots == "updateNewInlineCallbackQuery" then
 local Text = bot.base64_decode(data.payload.data)
@@ -18027,7 +18027,6 @@ local resuult = {{type = 'article', id = idnum, title = 'هذه همسه سري�
 https.request("https://api.telegram.org/bot"..Token..'/answerInlineQuery?inline_query_id='..data.id..'&results='..JSON.encode(resuult))
 Redis:set( MEZO..'hmsabots'..idnum..UserId_Info.id,username[1])
 Redis:set( MEZO..'hmsabots'..idnum..data.sender_user_id,username[1])
-end
 end
 end
 if Text == "ترجمه" or Text == "ترجمة" then
@@ -19211,7 +19210,7 @@ data = {
 {text = 'القائمه الرئيسيه', data = IdUser..'/helpall'},
 },
 {
-{text = '◜ 𝚂𝙾𝚄𝚁𝙲𝙴 𝚃𝙸𝙶𝙴𝚁◞', url = 't.me/'..chsource..''}, 
+{text = '◜ 𝚂𝙾𝚄𝚁𝙲𝙴 𝚃𝙸𝙶𝙴??◞', url = 't.me/'..chsource..''}, 
 },
 }
 }
