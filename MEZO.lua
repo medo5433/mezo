@@ -12080,7 +12080,7 @@ local msg_id = msg.id/2097152/0.5
 https.request("https://api.telegram.org/bot"..Token..'/sendanimation?chat_id=' .. msg.chat_id .. '&animation=https://t.me/GifDavid/'..Abs..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
 end
 if text == "استوري" then
-Redis:sadd(Fast..'Fast:Num:User:Pv',msg.sender_id.user_id)
+Redis:sadd(MEZO..'MEZO:Num:User:Pv',msg.sender_id.user_id)
 if not msg.Asasy then
 Abs = math.random(296,400); 
 local Text ='*🎆┊حـالات واتـس قصيـرة ➧🧸♥️*'
@@ -16840,20 +16840,20 @@ if text == "تفعيل سمسمي" then
 if not msg.Manger then
 return send(msg_chat_id,msg_id,'\n*ᥫ᭡ عذرآ الامر يخص〘 '..Controller_Num(6)..' 〙* ',"md",true)  
 end
-Redis:del(Fast.."smsme"..msg.chat_id)
+Redis:del(MEZO.."smsme"..msg.chat_id)
 send(msg.chat_id,msg.id," ᥫ᭡ تم تفعيل سمسمي")
 end
 if text == "تعطيل سمسمي" then
 if not msg.Manger then
 return send(msg_chat_id,msg_id,'\n*ᥫ᭡ عذرآ الامر يخص〘 '..Controller_Num(6)..' 〙* ',"md",true)  
 end
-Redis:set(Fast.."smsme"..msg.chat_id,true)
+Redis:set(MEZO.."smsme"..msg.chat_id,true)
 send(msg.chat_id,msg.id," ᥫ᭡ تم تعطيل سمسمي")
 end
-if Redis:get(Fast..'smsme') and Redis:get(Fast.."smsme"..msg_chat_id) then
+if Redis:get(MEZO..'smsme') and Redis:get(MEZO.."smsme"..msg_chat_id) then
 if text and msg_reply_to_message_id ~= 0 then
 local Message_Reply = bot.getMessage(msg_chat_id, msg_reply_to_message_id)
-if Message_Reply and Message_Reply.sender_id and tonumber(Message_Reply.sender_id.user_id) == tonumber(Fast) then
+if Message_Reply and Message_Reply.sender_id and tonumber(Message_Reply.sender_id.user_id) == tonumber(MEZO) then
 ai_api = https.request("https://api-sv2.simsimi.net/v2/?text="..URL.escape(text).."&lc=ar&cf=False")
 ai_decode = JSON.decode(ai_api)
 ai_text = ai_decode['success']
@@ -18114,9 +18114,9 @@ if tonumber(mk[1]) ~= tonumber(data.sender_user_id) or tonumber(mk[2]) ~= tonumb
 https.request("https://api.telegram.org/bot"..Token.."/answerCallbackQuery?callback_query_id="..data.id.."&text="..URL.escape("الهمسه ليست لك").."&show_alert=true")
 end
 end
-if data and data.luatele and data.luatele == "updateSupergroup" then
-local Get_Chat = LuaTele.getChat('-100'..data.supergroup.id)
-if data.supergroup.status.luatele == "chatMemberStatusBanned" then
+if data and data.MEZObots and data.MEZObots == "updateSupergroup" then
+local Get_Chat = bot.getChat('-100'..data.supergroup.id)
+if data.supergroup.status.MEZObots == "chatMemberStatusBanned" then
 Redis:srem(MEZO.."ChekBotAdd",'-100'..data.supergroup.id)
 local keys = Redis:keys(MEZO..'*'..'-100'..data.supergroup.id..'*')
 Redis:del(MEZO.."List:Manager"..'-100'..data.supergroup.id)
