@@ -18114,13 +18114,6 @@ https.request("https://api.telegram.org/bot"..Token.."/answerCallbackQuery?callb
 end
 end
 
-elseif data and data.luatele and data.luatele == "updateMessageSendSucceeded" then
-local msg = data.message
-local Chat = msg.chat_id
-if msg.content.text then
-text = msg.content.text.text
-end
-
 if msg.content.video_note then
 if msg.content.video_note.video.remote.id == Redis:get(MEZO.."PinMsegees:"..msg.chat_id) then
 LuaTele.pinChatMessage(msg.chat_id,msg.id,true)
