@@ -18114,18 +18114,7 @@ if tonumber(mk[1]) ~= tonumber(data.sender_user_id) or tonumber(mk[2]) ~= tonumb
 https.request("https://api.telegram.org/bot"..Token.."/answerCallbackQuery?callback_query_id="..data.id.."&text="..URL.escape("الهمسه ليست لك").."&show_alert=true")
 end
 end
-if data and data.MEZObots and data.MEZObots == "updateSupergroup" then
-local Get_Chat = bot.getChat('-100'..data.supergroup.id)
-if data.supergroup.status.MEZObots == "chatMemberStatusBanned" then
-Redis:srem(MEZO.."ChekBotAdd",'-100'..data.supergroup.id)
-local keys = Redis:keys(MEZO..'*'..'-100'..data.supergroup.id..'*')
-Redis:del(MEZO.."List:Manager"..'-100'..data.supergroup.id)
-Redis:del(MEZO.."Command:List:Group"..'-100'..data.supergroup.id)
-for i = 1, #keys do 
-Redis:del(keys[i])
-end
-return send(Sudo_Id,0,'*\nᥫ᭡ تم طرد البوت من جروب جديده \nᥫ᭡اسم الجروب : '..Get_Chat.title..'\nᥫ᭡ايدي الجروب :*`-100'..data.supergroup.id..'`\nᥫ᭡ تم مسح جميع البيانات المتعلقه بالجروب',"md")
-end
+
 elseif data and data.luatele and data.luatele == "updateMessageSendSucceeded" then
 local msg = data.message
 local Chat = msg.chat_id
